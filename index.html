@@ -13,25 +13,25 @@
 </style>    
 <body class="w3-light-grey w3-content" style="max-width:1600px">
     <!-- Sidebar/menu -->
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-card w3-animate-left "mySidebar style="z-index:3;width:200px;" id="mySidebar"><br>
-    <button class="w3-bar-item w3-button w3-hide-large w3-xxxlarge" onclick="w3_close()">&times;</button>
-    <div class="w3-container">
-      <img src="/images/profile.jpg" style="width:80%;" class="w3-alex"><br><br>
-      <p class="w3-text-grey w3-large w3-center" >Alexandre Day <br>
-          Boston University</p>
-    </div>
-    <div class="w3-bar-block">
-      <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-user fa-fw w3-margin-right"></i>About</a> 
-      <a href="#research" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-connectdevelop fa-fw w3-margin-right"></i>Research/Projects</a> 
-      <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-leanpub fa-fw w3-margin-right"></i>Publications</a>
-    </div>
+    <nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-card w3-animate-left "mySidebar style="z-index:3;width:200px;" id="mySidebar"><br>
+        <button class="w3-bar-item w3-button w3-hide-large w3-xxxlarge" onclick="w3_close()">&times;</button>
+        <div class="w3-container">
+          <img src="/images/profile.jpg" style="width:80%;" class="w3-alex"><br><br>
+          <p class="w3-text-grey w3-large w3-center" >Alexandre Day <br>
+              Boston University</p>
+        </div>
+        <div class="w3-bar-block">
+          <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-user fa-fw w3-margin-right"></i>About</a> 
+          <a href="research.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-connectdevelop fa-fw w3-margin-right"></i>Research/Projects</a> 
+          <a href="publication.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-leanpub fa-fw w3-margin-right"></i>Publications</a>
+        </div>
+        <div class="panel w3-xxlarge">
+          <a href=https://github.com/alexandreday><i class="fa fa-github w3-hover-opacity" target="_blank"></i></a>
+          <a href=https://scholar.google.com/citations?user=OQK_iFEAAAAJ&hl=en target="_blank"><i class="ai ai-google-scholar w3-hover-opacity"></i></a>
+          <a href=https://www.linkedin.com/in/alexandre-day-01309665 target="_blank"><i class="fa fa-linkedin w3-hover-opacity"></i></a>
+        </div>
+      </nav>
 
-    <div class="panel w3-xlarge">
-      <a href=https://github.com/alexandreday><i class="fa fa-github w3-hover-opacity" target="_blank"></i></a>
-      <a href=https://scholar.google.com/citations?user=OQK_iFEAAAAJ&hl=en target="_blank"><i class="ai ai-google-scholar w3-hover-opacity"></i></a>
-      <a href=https://www.linkedin.com/in/alexandre-day-01309665 target="_blank"><i class="fa fa-linkedin w3-hover-opacity"></i></a>
-    </div>
-  </nav>
 
   <!-- Overlay effect when opening sidebar on small screens -->
 <!--div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div> -->
@@ -39,9 +39,21 @@
 <div class="w3-main" style="margin-left:300px">
         <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
         <div class="w3-container w3-padding-small" style="margin-bottom:32px">
+        
                 <h4><b>About Me</b></h4>
-                <p>Chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken, chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken chicken ?</p>
-                <hr>
+                <p> Thanks for visiting my website ! I am a PhD candidate at Boston University doing research with <a href="http://physics.bu.edu/~pankajm/" target="_blank"> Pankaj Mehta</a>.
+                    I am working on and thinking about theoretical aspects of machine learning and applying a wide range of ML methods to solve problems from physics and biology.
+                    For an introduction to machine learning, check out our
+                     <a href =https://arxiv.org/abs/1803.08823 target="_blank"> introductory review</a> joined with many useful <a href="http://physics.bu.edu/~pankajm/MLnotebooks.html" target="_blank"> Python Jupyter notebooks</a>.
+                    I'm always open to an impromptu chat about ML, physics and science in general!
+                    You can find my full <a href=https://drive.google.com/file/d/0BylfhuDS_IwwUVN4WjNGM0ppZVU/view?usp=sharing target="_blank" >CV here</a>.
+                </p>
+                <h4><b>Recent projects</b></h4>
+                <p>
+                    Coming soon !
+
+                </p>
+                
 
     <script>
             function w3_open() {
@@ -51,7 +63,6 @@
                 document.getElementById("mySidebar").style.display = "none";
             }
             </script>
-
 </body>
 </html>
 
