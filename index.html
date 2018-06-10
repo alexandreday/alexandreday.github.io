@@ -8,38 +8,22 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/academicons.min.css">
-<style>
-    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-</style>    
+<script src="//code.jquery.com/jquery.min.js"></script>
+
+<style> body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif} </style>    
+
 <body class="w3-light-grey w3-content" style="max-width:1600px">
-    <!-- Sidebar/menu -->
-    <nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-card w3-animate-left "mySidebar style="z-index:3;width:230px;" id="mySidebar"><br>
-        <button class="w3-bar-item w3-button w3-hide-large w3-xxxlarge" onclick="w3_close()">&times;</button>
-        <div class="w3-container">
-          <img src="/images/profile.jpg" style="width:75%;" class="w3-alex"><br><br>
-          <p> <t class="w3-text-grey w3-large w3-alex-test" >Alexandre Day</t><br> <i class="w3-text-grey w3-medium">Machine Learning & Physics </i></p>
-        </div>
-        <div class="w3-bar-block">
-          <a href="#about" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-text-teal"><i class="fa fa-user fa-fw w3-margin-right"></i>About</a> 
-          <a href="research.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-connectdevelop fa-fw w3-margin-right"></i>Research/Projects</a> 
-          <a href="publication.html" onclick="w3_close()" class="w3-bar-item w3-button w3-padding"><i class="fa fa-leanpub fa-fw w3-margin-right"></i>Publications</a>
-        </div>
-        <div class="panel w3-xxlarge">
-          <a href=https://github.com/alexandreday><i class="fa fa-github w3-hover-opacity" target="_blank"></i></a>
-          <a href=https://scholar.google.com/citations?user=OQK_iFEAAAAJ&hl=en target="_blank"><i class="ai ai-google-scholar w3-hover-opacity"></i></a>
-          <a href=https://www.linkedin.com/in/alexandre-day-01309665 target="_blank"><i class="fa fa-linkedin w3-hover-opacity"></i></a>
-        </div>
-      </nav>
 
-
-  <!-- Overlay effect when opening sidebar on small screens -->
-<!--div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div> -->
+    <div id="mySidebar"></div>
+<!-- Overlay effect when opening sidebar on small screens -->
+    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:300px">
         <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
-        <div class="w3-container w3-padding-small" style="margin-bottom:32px">
+
+        <div class="w3-container w3-padding-small" style="margin-bottom:20px">
         
-                <h4><b>About Me</b></h4>
+                <h3><b>About Me</b></h3>
                 <p> Thanks for visiting my website ! I am a PhD candidate at Boston University doing research with <a href="http://physics.bu.edu/~pankajm/" target="_blank"> Pankaj Mehta</a>.
                     I am working on and thinking about theoretical aspects of machine learning and applying a wide range of ML methods to solve problems from physics and biology.
                     For an introduction to machine learning, check out our
@@ -47,12 +31,48 @@
                     I'm always open to an impromptu chat about ML, physics and science in general!
                     You can find my full <a href=https://drive.google.com/file/d/0BylfhuDS_IwwUVN4WjNGM0ppZVU/view?usp=sharing target="_blank" >CV here</a>.
                 </p>
-                <h4><b>Recent projects</b></h4>
-                <p>
-                    Coming soon !
-
-                </p>
-                
+            
+        </div>
+    <div class="w3-container w3-padding-small" style="margin-bottom:20px"><h3><b>Recent projects</b></h3></div>
+    <div class="w3-row-padding ">
+        <div class = "w3-container w3-third" >
+            <div class="w3-col.m11 w3-card w3-white w3-margin-bottom" style="height:400px">
+                <a href="research.html"><img src="/images/rugged.png" alt="Norway" style="height:200px" class="w3-hover-opacity w3-project"></a>
+                <div class="w3-container w3-white">
+                    <p><h5><b> Reinforcement learning quantum control</b></h5></p>
+                    <p> Using Q-learning, we studied the rich phase diagram of quantum state preparation and it's implications.</p>
+                </div>
+            </div>
+        </div>
+        <div class = "w3-container w3-third">
+            <div class="w3-col.m11 w3-card w3-white w3-margin-bottom" style="height:400px">
+                    <a href="research.html"><img src="/images/highd.png" alt="Norway" style="height:200px" class="w3-hover-opacity w3-project"></a>
+                    <div class="w3-container w3-white">
+                            <p><h5><b> Deep validated clustering</b></h5></p>
+                            <p> A self-consistent clustering approach that learns hierarchical 
+                                semantics of clusters.</p>
+                        </div>
+            </div>
+        </div>
+        <div class = "w3-container w3-third" >
+                <div class="w3-col.m11 w3-card w3-white w3-margin-bottom" style="height:400px">
+                        <a href="research.html"><img src="/images/rl-MC.png" alt="Norway" style="height:200px" class="w3-hover-opacity w3-project"></a>
+                        <div class="w3-container w3-white">
+                                <p><h5><b> Deep reinforcement learning of Markov chains</b></h5></p>
+                                <p> A novel reinforcement based approach to construct efficient Markov chains for sampling complicated distributions.</p>
+                            </div>
+                </div>
+            </div>
+            <div class = "w3-container w3-third" >
+                    <div class="w3-col.m11 w3-card w3-white w3-margin-bottom" style="height:400px">
+                            <a href="http://physics.bu.edu/~pankajm/MLnotebooks.html" target="_blank"><img src="/images/ml-review.png" alt="Norway" style="height:200px" class="w3-hover-opacity w3-project"></a>
+                            <div class="w3-container w3-white">
+                                    <p><h5><b> Machine learning review</b></h5></p>
+                                    <p> An introduction to machine learning in the language of physicists. Covers many of the core ideas of ML.</p>
+                                </div>
+                    </div>
+                </div>
+</div>            
 
     <script>
             function w3_open() {
@@ -61,7 +81,12 @@
             function w3_close() {
                 document.getElementById("mySidebar").style.display = "none";
             }
-            </script>
+    </script>
+    <script>
+            $.get("navigation.html #mySidebar > *", function(data){
+            $("#mySidebar").replaceWith(data);});
+    </script>
+    
 </body>
 </html>
 
