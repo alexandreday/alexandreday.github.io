@@ -13,23 +13,24 @@
 </script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/css/w3.css?version=2">
+<link rel="stylesheet" href="/css/w3v2.css">
 <!--link rel="stylesheet" href="normalize.css"-->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/academicons.min.css">
 <script src="//code.jquery.com/jquery.min.js"></script>
+<script src="util.js"></script>
 
 <style> body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif} </style>    
 
-<body class="w3-light-grey w3-content" style="max-width:1600px">
+<body class="w3-light-grey w3-content" onload="changeToTeal(0)" style="max-width:1600px">
 
-    <div id="mySidebar"></div>
+<div id="mySidebar"></div>
 <!-- Overlay effect when opening sidebar on small screens -->
-    <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+    <!-- <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div> -->
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:250px">
-        <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+        <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()">Menu &#9776;</button>
 
         <div class="w3-container w3-padding-small" style="margin-bottom:20px">
         
@@ -85,19 +86,10 @@
                 </div>
 </div>            
 
-    <script>
-            function w3_open() {
-                document.getElementById("mySidebar").style.display = "block";
-            }
-            function w3_close() {
-                document.getElementById("mySidebar").style.display = "none";
-            }
-    </script>
-    <script>
-            $.get("navigation.html #mySidebar > *", function(data){
-            $("#mySidebar").replaceWith(data);});
-    </script>
-    
+<script>
+        $.get("navigation.html #mySidebar > *", function(data){
+        $("#mySidebar").replaceWith(data);});
+</script>
 </body>
 </html>
 
