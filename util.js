@@ -24,3 +24,39 @@ function GetElementInsideContainer(containerID, childID) {
     }
     return elm;
 }
+
+function populateTable() {
+    var tableContent = '<table class="w3-table w3-striped w3-white">';
+    $.get('publication.tsv', function( data ) {
+      //alert(data);
+      //this will split the string into array line by line
+      var lineByline = data.split('\n');
+
+      var title,name,refnumber,date,link,fields,line;
+
+      for(var i=0;i<lineByline.length-1;i++){
+          line = lineByline[i];
+          fields = line.split('\t');
+          title=fields[0];
+          name=fields[1];
+          refnumber=fields[2];
+          date=fields[3];
+          link=fields[4];
+          console.log(fields);
+
+          tableContent += '<tr class="w3-hover-opacity">';
+          tableContent += '<td>&nbsp&nbsp<li class="w3-medium w3-right"></li></td>';
+          tableContent += '<td> <a href="' + link + '" target="_blank" style="text-decoration:none">';
+          tableContent += '<div class="w3-text-teal w3-bold">' + title + '</div>';
+          tableContent += name + '<br>';
+          tableContent += refnumber;
+          tableContent += '</a></td>';
+          tableContent += '<td><i>' + date + '</i></td>';
+          tableContent += '</tr>'
+      }
+      tableContent+='</table>'
+        //console.log(tableContent);
+        //$('#mypubtable').innerHTML(tableContent);
+        $('#mypubtable').html(tableContent);
+    });
+};

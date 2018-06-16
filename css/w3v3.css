@@ -231,7 +231,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
 .w3-border-pale-yellow,.w3-hover-border-pale-yellow:hover{border-color:#ffffcc!important}.w3-border-pale-blue,.w3-hover-border-pale-blue:hover{border-color:#e7ffff!important}
 .center{margin-left: auto; margin-right: auto;}
 .panel{display: block; margin-left: auto;margin-right: auto;}
-.w3-alex{border-radius:50%;display: block;margin-left: auto;margin-right: auto;width: 50%; margin-bottom: -40px}
+.w3-alex{border-radius:50%;display: block;margin-left: auto;margin-right: auto; width: 40%; margin-bottom: -40px}
 .w3-project{display: block;margin-left: auto;margin-right: auto;}
 .alex-image{width:50%;}
 img.center{
