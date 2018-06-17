@@ -45,7 +45,7 @@ function populateTable() {
           console.log(fields);
 
           tableContent += '<tr class="w3-hover-opacity">';
-          tableContent += '<td>&nbsp&nbsp<li class="w3-medium w3-right"></li></td>';
+          tableContent += '<td>&nbsp&nbsp&nbsp<li class="w3-medium w3-right"></li></td>';
           tableContent += '<td> <a href="' + link + '" target="_blank" style="text-decoration:none">';
           tableContent += '<div class="w3-text-teal w3-bold">' + title + '</div>';
           tableContent += name + '<br>';
