@@ -243,9 +243,8 @@ img.center{
 .w3-bold{
     font-weight:bold;
 }
-
 .k1{
-    text-align: center;
-    color:#757575;
+    text-align: left;
+    color:black;
     font-family: "Raleway", sans-serif;
 }
