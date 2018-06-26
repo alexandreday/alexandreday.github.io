@@ -248,3 +248,9 @@ img.center{
     color:black;
     font-family: "Raleway", sans-serif;
 }
+
+.myline{
+    width: 100px;
+    margin-left:auto;
+    margin-right:auto;
+}
