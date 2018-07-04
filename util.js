@@ -8,7 +8,7 @@ function w3_close() {
 }
 
 function changeToTeal(idx){
-    ref = {0: "aboutme",1:"research",2:"publication"}
+    ref = {0: "aboutme",1:"research",2:"publication",3:"resume"}
     var tmp = GetElementInsideContainer("mySidebar",ref[idx]);
     tmp.classList.add("w3-text-teal");
 }
