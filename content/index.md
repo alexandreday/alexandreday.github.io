@@ -20,7 +20,7 @@ projects:
     link: research.html
 ---
 
-I am a Director of Data Science at [Capital One](https://www.capitalone.com) working on projects for developing cutting-edge frontier ML tooling for production use-cses, which includes techniques such as large-scale graph foundation methods for entity resolution/fraud detection and underwriting as well as GenAI safety methods to vulnerability detections. I'm passionate about building models that actually make it into production.
+I am a Director of Data Science at [Capital One](https://www.capitalone.com) working on projects for developing frontier ML tooling for production use-cases, which includes techniques such as large-scale graph foundation methods for entity resolution/fraud detection and underwriting as well as GenAI safety methods for vulnerability detections. I'm passionate about building models that actually make it into production.
 
 My background is in computational physics, which is how I originally got into machine learning. These days I'm interested in foundation models for their in-context capabilities (e.g. a mix of tabular/graph/language foundation models) and ways to scale GenAI frameworks in a enterprise setting.
 
