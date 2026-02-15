@@ -1,6 +1,10 @@
 ---
 title: About Me
 projects:
+  - title: Scalable meta-learning of decision trees
+    description: A synthetic data pipeline using Structural Causal Models to enable scalable meta-learning of near-optimal interpretable decision trees.
+    image: /images/metatree-fig1.png
+    link: metatree.html
   - title: Self-consistent scalable clustering
     description: A self-consistent clustering approach that learns hierarchical semantics of clusters.
     image: /images/highd2.jpg
