@@ -1,23 +1,6 @@
-<nav class="w3-sidebar w3-bar-block w3-collapse w3-white w3-card w3-animate-left" style="z-index:3;width:200px;" id="mySidebar"><br>
-  <button class="w3-bar-item w3-button w3-hide-large w3-xxxlarge" onclick="w3_close()">&times;</button>
-  <div class="w3-container">
-      <img src="/images/profile-compress-2.jpg" class="w3-alex w3-center"  style="width: 65%; right: 0px;"><br><br>
-      <p> <t><div class="k1 w3-center" style="font-size:20px;"> Alexandre Day, PhD </div></t>
-      <i><div class="k1 w3-center" style="font-size:14px;text-align:left;"> Data scientist </div></i></p>
-      </div>       
-      <hr class="myline">     
-            <div class="w3-bar-block">
-              <a href="./index.html" class="w3-bar-item w3-button w3-padding" id="aboutme"><i class="fa fa-user fa-fw w3-margin-right"></i>About me</a> 
-              <a href="./research.html" class="w3-bar-item w3-button w3-padding" id="research"><i class="fa fa-connectdevelop fa-fw w3-margin-right"></i>Projects</a> 
-              <a href="./publication.html" class="w3-bar-item w3-button w3-padding" id="publication"><i class="fa fa-leanpub fa-fw w3-margin-right"></i>Publications</a>
-              <!-- <a href="./resume.html" class="w3-bar-item w3-button w3-padding" id="resume"><i class="fa fa-file fa-fw w3-margin-right"></i>Cv/Resume</a> -->
-            </div>
-            <hr class="myline">
-            <div class="w3-xxlarge w3-container w3-center" style="margin-top: -20px"><p>
-              <a href="mailto:alexandre.day1@gmail.com"><i class="fa fa-envelope w3-hover-opacity" target="_blank"></i></a>&nbsp;
-              <a href=https://github.com/alexandreday target="_blank"><i class="fa fa-github w3-hover-opacity"></i></a>&nbsp;
-              <a href=https://scholar.google.com/citations?user=OQK_iFEAAAAJ&hl=en target="_blank"><i class="ai ai-google-scholar w3-hover-opacity"></i></a>&nbsp;
-              <a href=https://www.linkedin.com/in/alexandre-day-01309665 target="_blank"><i class="fa fa-linkedin w3-hover-opacity"></i></a>&nbsp;
-            </p>
-            </div>
-</nav>        
+<div id="mySidebar"></div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="util.js"></script>
+<script>
+    loadContent("content/navigation.md", function(parsed) { renderNavigation(parsed, 0); });
+</script>
