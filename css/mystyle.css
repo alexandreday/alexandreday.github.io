@@ -110,6 +110,12 @@ body.dark-mode .w3-sidebar {
     color: #e0e0e0 !important;
 }
 
+body.dark-mode .w3-sidebar .k1,
+body.dark-mode .w3-sidebar p,
+body.dark-mode .w3-sidebar i {
+    color: #e0e0e0 !important;
+}
+
 body.dark-mode .w3-bar-item,
 body.dark-mode .w3-button,
 body.dark-mode a {
