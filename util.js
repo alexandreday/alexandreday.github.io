@@ -168,7 +168,7 @@ function renderIndexContent(parsed) {
         var target = p.target ? ' target="' + p.target + '"' : '';
         projectsHtml += '<div class="w3-container w3-third">';
         projectsHtml += '<div class="w3-col.m11 w3-card w3-white w3-margin-bottom" style="height:485px">';
-        projectsHtml += '<a href="' + p.link + '"' + target + '><div class="image-test w3-hover-opacity" style="background-image: url(\'' + p.image + '\');"></div></a>';
+        projectsHtml += '<a href="' + p.link + '"' + target + '><div class="image-test w3-hover-opacity" role="img" aria-label="' + p.title + '" style="background-image: url(\'' + p.image + '\');"></div></a>';
         projectsHtml += '<div class="w3-container w3-white">';
         projectsHtml += '<p><h5><b> ' + p.title + '</b></h5></p>';
         projectsHtml += '<p> ' + p.description + '</p>';
@@ -222,7 +222,7 @@ function renderNavigation(parsed, activeIdx) {
     var navLinks = attrs.navLinks || [];
     for (var i = 0; i < navLinks.length; i++) {
         var nl = navLinks[i];
-        html += '<a href="' + nl.href + '" class="w3-bar-item w3-button w3-padding" id="' + nl.id + '"><i class="fa ' + nl.icon + ' fa-fw w3-margin-right"></i>' + nl.label + '</a> ';
+        html += '<a href="' + nl.href + '" class="w3-bar-item w3-button w3-padding" id="' + nl.id + '"><i class="fa ' + nl.icon + ' fa-fw w3-margin-right" aria-hidden="true"></i>' + nl.label + '</a> ';
     }
     html += '</div>';
     html += '<hr class="myline">';
@@ -233,7 +233,8 @@ function renderNavigation(parsed, activeIdx) {
     for (var i = 0; i < socialLinks.length; i++) {
         var sl = socialLinks[i];
         var target = sl.href.startsWith('mailto:') ? '' : ' target="_blank"';
-        html += '<a href="' + sl.href + '"' + target + '><i class="' + sl.icon + ' w3-hover-opacity"></i></a>&nbsp;';
+        var slLabel = sl.href.startsWith('mailto:') ? 'Email' : sl.icon.split(' ').pop().replace('fa-', '').replace('ai-', '').replace(/-/g, ' ');
+        html += '<a href="' + sl.href + '"' + target + ' aria-label="' + slLabel + '"><i class="' + sl.icon + ' w3-hover-opacity" aria-hidden="true"></i></a>&nbsp;';
     }
     html += '</p></div>';
     html += '</nav>';
@@ -252,7 +253,7 @@ function renderNavigation2(parsed, activeIdx) {
     var navLinks = attrs.navLinks || [];
     for (var i = 0; i < navLinks.length; i++) {
         var nl = navLinks[i];
-        html += '<a href="' + nl.href + '" class="w3-bar-item" id="' + nl.id + '"><i class="w3-xlarge fa ' + nl.icon + ' fa-fw w3-margin-right w3-hover-opacity"></i></a> ';
+        html += '<a href="' + nl.href + '" class="w3-bar-item" id="' + nl.id + '" aria-label="' + nl.label + '" title="' + nl.label + '"><i class="w3-xlarge fa ' + nl.icon + ' fa-fw w3-margin-right w3-hover-opacity" aria-hidden="true"></i></a> ';
     }
     html += '</div>';
     html += '<hr class="myline">';
@@ -262,7 +263,8 @@ function renderNavigation2(parsed, activeIdx) {
     for (var i = 0; i < socialLinks.length; i++) {
         var sl = socialLinks[i];
         var target = sl.href.startsWith('mailto:') ? '' : ' target="_blank"';
-        html += '<a href="' + sl.href + '"' + target + '><i class="' + sl.icon + ' w3-hover-opacity"></i></a>';
+        var sl2Label = sl.href.startsWith('mailto:') ? 'Email' : sl.icon.split(' ').pop().replace('fa-', '').replace('ai-', '').replace(/-/g, ' ');
+        html += '<a href="' + sl.href + '"' + target + ' aria-label="' + sl2Label + '" title="' + sl2Label + '"><i class="' + sl.icon + ' w3-hover-opacity" aria-hidden="true"></i></a>';
         if (i < socialLinks.length - 1) html += '\n';
     }
     html += '</p></div>';
