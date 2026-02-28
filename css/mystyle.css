@@ -168,12 +168,13 @@ body.dark-mode hr {
 
 /* Blog post layout (research/detail pages) */
 .blog-container {
-    margin-left: 100px;
-    max-width: 780px;
+    margin-left: 80px;  /* clear the icon sidebar */
     padding: 0 24px;
 }
 
 .blog-post {
+    max-width: 760px;
+    margin: 0 auto;     /* center in the available space */
     padding: 36px 0 48px;
     line-height: 1.75;
 }
@@ -269,7 +270,6 @@ body.dark-mode .blog-references a { color: #4dd9d9; }
 @media screen and (max-width: 992px) {
     .blog-container {
         margin-left: 0;
-        max-width: 100%;
         padding: 0 16px;
     }
 }

@@ -222,18 +222,7 @@ function renderResearchContent(parsed) {
     html += '<div class="blog-date">' + attrs.date + '</div>';
     html += '</header>';
 
-    // Body text
-    html += '<div class="blog-body">' + parsed.bodyHtml + '</div>';
-
-    // Figure with real img tag (no clipping)
-    if (attrs.figureImage) {
-        html += '<figure class="blog-figure">';
-        html += '<img src="' + attrs.figureImage + '" alt="Research figure">';
-        html += '<figcaption>' + attrs.figureCaption + '</figcaption>';
-        html += '</figure>';
-    }
-
-    // Publications as a references section
+    // Publications right after header
     var pubs = attrs.publications || [];
     if (pubs.length > 0) {
         html += '<section class="blog-references">';
@@ -244,6 +233,17 @@ function renderResearchContent(parsed) {
             html += '<li><a href="' + pub.link + '" target="_blank">' + pub.title + '</a> &mdash; <em>' + pub.journal + '</em></li>';
         }
         html += '</ul></section>';
+    }
+
+    // Body text
+    html += '<div class="blog-body">' + parsed.bodyHtml + '</div>';
+
+    // Figure with real img tag (no clipping)
+    if (attrs.figureImage) {
+        html += '<figure class="blog-figure">';
+        html += '<img src="' + attrs.figureImage + '" alt="Research figure">';
+        html += '<figcaption>' + attrs.figureCaption + '</figcaption>';
+        html += '</figure>';
     }
 
     html += '</article>';
