@@ -1,3 +1,23 @@
+// --- Dark mode ---
+
+function initDarkMode() {
+    if (localStorage.getItem('darkMode') === 'on') {
+        document.body.classList.add('dark-mode');
+    }
+    var btn = document.createElement('button');
+    btn.id = 'dark-mode-toggle';
+    btn.setAttribute('aria-label', 'Toggle dark mode');
+    btn.textContent = localStorage.getItem('darkMode') === 'on' ? '☀ Light' : '☾ Dark';
+    btn.onclick = function() {
+        var isDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem('darkMode', isDark ? 'on' : 'off');
+        btn.textContent = isDark ? '☀ Light' : '☾ Dark';
+    };
+    document.body.appendChild(btn);
+}
+
+document.addEventListener('DOMContentLoaded', initDarkMode);
+
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
 }
