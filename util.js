@@ -167,7 +167,7 @@ function renderIndexContent(parsed) {
         var p = projects[i];
         var target = p.target ? ' target="' + p.target + '"' : '';
         projectsHtml += '<div class="w3-container w3-third">';
-        projectsHtml += '<div class="w3-col.m11 w3-card w3-white w3-margin-bottom" style="height:485px">';
+        projectsHtml += '<div class="w3-card w3-white w3-margin-bottom">';
         projectsHtml += '<a href="' + p.link + '"' + target + '><div class="image-test w3-hover-opacity" role="img" aria-label="' + p.title + '" style="background-image: url(\'' + p.image + '\');"></div></a>';
         projectsHtml += '<div class="w3-container w3-white">';
         projectsHtml += '<p><h5><b> ' + p.title + '</b></h5></p>';
@@ -197,7 +197,7 @@ function renderResearchContent(parsed) {
 
     // Figure
     html += '<div class="w3-container">';
-    html += '<div class="w3-col.m10 w3-card w3-white w3-margin-bottom" style="height:400px">';
+    html += '<div class="w3-card w3-white w3-margin-bottom">';
     html += '<div class="image-test" style="background-image: url(\'' + attrs.figureImage + '\');"></div>';
     html += '</div>';
     html += '<div class="w3-container"> ' + attrs.figureCaption + '</div>';

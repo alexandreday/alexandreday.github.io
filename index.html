@@ -22,38 +22,28 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/css/academicons.min.css">
+<link rel="stylesheet" href="/css/mystyle.css">
 <script src="//code.jquery.com/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 <script src="util.js"></script>
 
 <style> body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-
-.image-test{
-    width: 100%;
-    height: 55%;
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-}
-.acv {
-    text-decoration: none;
-    }
+.acv { text-decoration: none; }
 .btn {
-    background-color:rgb(0, 150, 150);
+    background-color: rgb(0, 150, 150);
     border: none;
     border-radius: 4px;
     color: white;
     padding: 4px 14px;
     cursor: pointer;
     font-size: 16px;
-    height: 80%;
 }
-
 </style>
 
 <body class="w3-light-grey w3-content" style="max-width:1600px">
 
 <div id="mySidebar"></div>
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 <!-- !PAGE CONTENT! -->
 <div class="w3-main" style="margin-left:250px; margin-right:50px;">
         <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
