@@ -224,9 +224,9 @@ body.dark-mode hr {
 }
 
 .blog-references {
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #e0e0e0;
+    margin-bottom: 36px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .blog-references h4 {
@@ -263,7 +263,7 @@ body.dark-mode .blog-header h2 { color: #e8e8e8; }
 body.dark-mode .blog-date { color: #aaa; }
 body.dark-mode .blog-body { color: #d0d0d0; }
 body.dark-mode .blog-figure figcaption { color: #aaa; }
-body.dark-mode .blog-references { border-top-color: #444; }
+body.dark-mode .blog-references { border-bottom-color: #444; }
 body.dark-mode .blog-references h4 { color: #777; }
 body.dark-mode .blog-references a { color: #4dd9d9; }
 
