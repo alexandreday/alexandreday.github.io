@@ -1,13 +1,13 @@
 // --- Dark mode ---
 
 function initDarkMode() {
-    if (localStorage.getItem('darkMode') === 'on') {
-        document.body.classList.add('dark-mode');
-    }
+    var pref = localStorage.getItem('darkMode');
+    if (pref === null) { pref = 'on'; localStorage.setItem('darkMode', 'on'); }
+    if (pref === 'on') { document.body.classList.add('dark-mode'); }
     var btn = document.createElement('button');
     btn.id = 'dark-mode-toggle';
     btn.setAttribute('aria-label', 'Toggle dark mode');
-    btn.textContent = localStorage.getItem('darkMode') === 'on' ? '☀ Light' : '☾ Dark';
+    btn.textContent = pref === 'on' ? '☀ Light' : '☾ Dark';
     btn.onclick = function() {
         var isDark = document.body.classList.toggle('dark-mode');
         localStorage.setItem('darkMode', isDark ? 'on' : 'off');
@@ -214,30 +214,39 @@ function renderIndexContent(parsed) {
 
 function renderResearchContent(parsed) {
     var attrs = parsed.attributes;
-    var html = '<h3><b>' + attrs.title + '</b></h3>';
-    html += '<h4><b>' + attrs.date + '</b></h4>';
+    var html = '<article class="blog-post">';
 
-    // Publications list
-    html += '<b>Our work on this project is published here:</b><br>';
-    var pubs = attrs.publications || [];
-    for (var i = 0; i < pubs.length; i++) {
-        var pub = pubs[i];
-        html += '<a href="' + pub.link + '" target="_blank"> ' + pub.title + '</a>. ';
-        html += '(Published in ' + pub.journal + ')<br>';
-    }
+    // Header
+    html += '<header class="blog-header">';
+    html += '<h2>' + attrs.title + '</h2>';
+    html += '<div class="blog-date">' + attrs.date + '</div>';
+    html += '</header>';
 
     // Body text
-    html += parsed.bodyHtml;
-    html += '<br><br>';
+    html += '<div class="blog-body">' + parsed.bodyHtml + '</div>';
 
-    // Figure
-    html += '<div class="w3-container">';
-    html += '<div class="w3-card w3-white w3-margin-bottom">';
-    html += '<div class="image-test" style="background-image: url(\'' + attrs.figureImage + '\');"></div>';
-    html += '</div>';
-    html += '<div class="w3-container"> ' + attrs.figureCaption + '</div>';
-    html += '</div>';
+    // Figure with real img tag (no clipping)
+    if (attrs.figureImage) {
+        html += '<figure class="blog-figure">';
+        html += '<img src="' + attrs.figureImage + '" alt="Research figure">';
+        html += '<figcaption>' + attrs.figureCaption + '</figcaption>';
+        html += '</figure>';
+    }
 
+    // Publications as a references section
+    var pubs = attrs.publications || [];
+    if (pubs.length > 0) {
+        html += '<section class="blog-references">';
+        html += '<h4>Publications</h4>';
+        html += '<ul>';
+        for (var i = 0; i < pubs.length; i++) {
+            var pub = pubs[i];
+            html += '<li><a href="' + pub.link + '" target="_blank">' + pub.title + '</a> &mdash; <em>' + pub.journal + '</em></li>';
+        }
+        html += '</ul></section>';
+    }
+
+    html += '</article>';
     $('#research-content').html(html);
 }
 
