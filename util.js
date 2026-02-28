@@ -202,13 +202,12 @@ function renderIndexContent(parsed) {
     for (var i = 0; i < projects.length; i++) {
         var p = projects[i];
         var target = p.target ? ' target="' + p.target + '"' : '';
-        projectsHtml += '<div class="w3-container w3-third">';
-        projectsHtml += '<div class="w3-card w3-white w3-margin-bottom">';
-        projectsHtml += '<a href="' + p.link + '"' + target + '><div class="image-test w3-hover-opacity" role="img" aria-label="' + p.title + '" style="background-image: url(\'' + p.image + '\');"></div></a>';
-        projectsHtml += '<div class="w3-container w3-white">';
-        projectsHtml += '<p><h5><b> ' + p.title + '</b></h5></p>';
-        projectsHtml += '<p> ' + p.description + '</p>';
-        projectsHtml += '</div></div></div>';
+        projectsHtml += '<a href="' + p.link + '"' + target + ' class="project-card w3-card w3-white w3-margin-bottom w3-hover-opacity">';
+        projectsHtml += '<div class="project-thumb" role="img" aria-label="' + p.title + '" style="background-image: url(\'' + p.image + '\');"></div>';
+        projectsHtml += '<div class="project-info">';
+        projectsHtml += '<div class="project-header"><span class="project-title">' + p.title + '</span><span class="project-date">' + (p.date || '') + '</span></div>';
+        projectsHtml += '<div class="project-desc">' + p.description + '</div>';
+        projectsHtml += '</div></a>';
     }
     $('#projects-grid').html(projectsHtml);
 }
