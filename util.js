@@ -44,22 +44,29 @@ function GetElementInsideContainer(containerID, childID) {
 }
 
 function populateTable() {
-    var tableContent = '<table class="w3-table w3-striped w3-white">';
+    // Inject search box before the table container
+    $('#mypubtable').before(
+        '<input id="pub-search" type="text" placeholder="Search publications..." ' +
+        'class="w3-input w3-border w3-round" style="margin-bottom:16px;max-width:400px;" ' +
+        'aria-label="Search publications">'
+    );
+
     $.get('publication.tsv', function( data ) {
       var lineByline = data.split('\n');
+      var tableContent = '<table class="w3-table w3-striped w3-white" id="pub-table">';
 
       var title,name,refnumber,date,link,fields,line;
 
       for(var i=0;i<lineByline.length-1;i++){
           line = lineByline[i];
           fields = line.split('\t');
+          if (fields.length < 4) continue;
           title=fields[0];
           name=fields[1];
           refnumber=fields[2];
           date=fields[3];
-          link=fields[4];
-          tableContent += '<tr class="w3-hover-opacity">';
-          tableContent += '<td>&nbsp&nbsp&nbsp<li class="w3-medium w3-right"></li></td>';
+          link=fields[4] || '';
+          tableContent += '<tr class="w3-hover-opacity" data-search="' + (title + ' ' + name + ' ' + refnumber + ' ' + date).toLowerCase() + '">';
           tableContent += '<td> <a href="' + link + '" target="_blank" style="text-decoration:none">';
           tableContent += '<div class="w3-text-teal w3-bold">' + title + '</div>';
           tableContent += name + '<br>';
@@ -69,7 +76,16 @@ function populateTable() {
           tableContent += '</tr>'
       }
       tableContent+='</table>'
-        $('#mypubtable').html(tableContent);
+      $('#mypubtable').html(tableContent);
+
+      // Live search filtering
+      $('#pub-search').on('input', function() {
+          var query = this.value.toLowerCase().trim();
+          $('#pub-table tr').each(function() {
+              var match = !query || $(this).data('search').indexOf(query) !== -1;
+              $(this).toggle(match);
+          });
+      });
     }).fail(function() {
         $('#mypubtable').html('<p class="w3-text-red">Failed to load publications. Please try refreshing the page.</p>');
     });
