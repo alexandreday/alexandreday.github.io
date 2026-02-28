@@ -159,3 +159,111 @@ body.dark-mode hr {
 }
 
 #dark-mode-toggle:hover { opacity: 1; }
+
+/* Blog post layout (research/detail pages) */
+.blog-container {
+    margin-left: 100px;
+    max-width: 780px;
+    padding: 0 24px;
+}
+
+.blog-post {
+    padding: 36px 0 48px;
+    line-height: 1.75;
+}
+
+.blog-header {
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.blog-header h2 {
+    font-size: 24px;
+    margin: 0 0 8px 0;
+    color: #222;
+    font-weight: bold;
+}
+
+.blog-date {
+    font-size: 14px;
+    color: #888;
+    font-style: italic;
+}
+
+.blog-body {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 36px;
+}
+
+.blog-figure {
+    margin: 36px 0;
+}
+
+.blog-figure img {
+    width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 2px 14px rgba(0,0,0,0.12);
+    display: block;
+}
+
+.blog-figure figcaption {
+    font-size: 13px;
+    color: #666;
+    margin-top: 10px;
+    line-height: 1.5;
+    font-style: italic;
+}
+
+.blog-references {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.blog-references h4 {
+    font-size: 13px;
+    font-weight: bold;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+}
+
+.blog-references ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.blog-references li {
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.blog-references a {
+    color: #008080;
+    text-decoration: none;
+}
+
+.blog-references a:hover { text-decoration: underline; }
+
+/* Dark mode blog overrides */
+body.dark-mode .blog-header { border-bottom-color: #444; }
+body.dark-mode .blog-header h2 { color: #e8e8e8; }
+body.dark-mode .blog-date { color: #aaa; }
+body.dark-mode .blog-body { color: #d0d0d0; }
+body.dark-mode .blog-figure figcaption { color: #aaa; }
+body.dark-mode .blog-references { border-top-color: #444; }
+body.dark-mode .blog-references h4 { color: #777; }
+body.dark-mode .blog-references a { color: #4dd9d9; }
+
+@media screen and (max-width: 992px) {
+    .blog-container {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 0 16px;
+    }
+}
