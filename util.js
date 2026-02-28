@@ -38,8 +38,6 @@ function populateTable() {
           refnumber=fields[2];
           date=fields[3];
           link=fields[4];
-          console.log(fields);
-
           tableContent += '<tr class="w3-hover-opacity">';
           tableContent += '<td>&nbsp&nbsp&nbsp<li class="w3-medium w3-right"></li></td>';
           tableContent += '<td> <a href="' + link + '" target="_blank" style="text-decoration:none">';
@@ -52,6 +50,8 @@ function populateTable() {
       }
       tableContent+='</table>'
         $('#mypubtable').html(tableContent);
+    }).fail(function() {
+        $('#mypubtable').html('<p class="w3-text-red">Failed to load publications. Please try refreshing the page.</p>');
     });
 };
 
