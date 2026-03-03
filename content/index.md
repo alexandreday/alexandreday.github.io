@@ -24,12 +24,10 @@ projects:
     date: Mar 2020
 ---
 
-I am a Director of Data Science at [Capital One](https://www.capitalone.com) working on projects for developing frontier ML tooling for production use-cases, which includes techniques such as large-scale graph foundation methods for entity resolution/fraud detection and underwriting as well as GenAI safety methods for vulnerability detections. I'm passionate about building models that actually make it into production.
-
-My background is in computational physics, which is how I originally got into machine learning. These days I'm interested in foundation models for their in-context capabilities (e.g. a mix of tabular/graph/language foundation models) and ways to scale GenAI frameworks in an enterprise setting.
+I am a Director of Data Science at [Capital One](https://www.capitalone.com) working on various AI/ML projects at the interface of research and applications for production scaling. Recent ML topics of interest include Graph ML, Tabular Foundation Models, Entity Resolution on Graphs, and Safe AI / Red Teaming for GenAI applications. In this work, we focus on adapting the latest AI research to our use-cases and contributing our innovations back to the ML research field.
 
 I lead a fantastic team of data scientists who work across business areas like fraud, servicing, cyber and marketing, and a lot of my daily work involves taking good research ideas and figuring out how to make them useful inside a real enterprise system, which usually entails a lot of governance and risk management.
 
-On this site I keep notes, side projects, and ideas I'm exploring. Most of this is intended to not be polished, it is just learnings and ongoing side-of-work interests. If you find anything useful here (or want to chat about ML, science & software engineering), feel free to reach out.
+On this site I keep notes, side projects, and ideas I'm exploring. Most of this is intentionally not polished, it is just learnings and ongoing side-of-work interests. If you find anything useful here (or want to chat about ML, science & software engineering), feel free to reach out.
 
-I previously received my Ph.D. from Boston University doing research with [Pankaj Mehta](http://physics.bu.edu/~pankajm/).
+My background is in computational physics, which is how I originally got into machine learning. I previously received my Ph.D. from Boston University doing research with [Pankaj Mehta](http://physics.bu.edu/~pankajm/).
