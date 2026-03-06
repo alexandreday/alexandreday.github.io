@@ -3,7 +3,7 @@ title: About Me
 projects:
   - title: Literature Review DB
     description: A local-first CLI tool that builds a scored, categorized database of research papers with structured reading plans. Built with agentic coding.
-    image: /images/litreviewdb.svg
+    image: /images/icon_litdb.jpg
     link: litreviewdb.html
     date: Mar 2026
   - title: Scalable meta-learning of decision trees
