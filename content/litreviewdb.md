@@ -2,7 +2,7 @@
 title: "Literature Review DB"
 date: March 2026
 figureCaption: "<b>Figure 1:</b> Literature Review DB fetches papers from arXiv, enriches them with citation and author data from OpenAlex, and ranks everything with a multi-factor relevance score into a local SQLite database with structured reading plans."
-figureImage: /images/litreviewdb.svg
+figureImage: /images/icon_litdb.jpg
 ---
 
 Keeping up with AI research is hard. ArXiv alone sees thousands of new ML papers every month, and none of the existing tools tell you *what to read first* for your specific topic. Literature Review DB is a local-first CLI tool that builds a scored, categorized, and searchable database of papers for any research area. Point it at a subject, and it pulls papers from arXiv, enriches them with citation data and author metrics from OpenAlex, fetches community signals from HuggingFace, and ranks everything with a multi-factor relevance score. Then it gives you a structured reading plan: foundational papers first, core work next, frontier research last.
