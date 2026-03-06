@@ -1,6 +1,11 @@
 ---
 title: About Me
 projects:
+  - title: Literature Review DB
+    description: A local-first CLI tool that builds a scored, categorized database of research papers with structured reading plans. Built with agentic coding.
+    image: /images/litreviewdb.svg
+    link: litreviewdb.html
+    date: Mar 2026
   - title: Scalable meta-learning of decision trees
     description: A synthetic data pipeline using Structural Causal Models to enable scalable meta-learning of near-optimal interpretable decision trees.
     image: /images/metatree-fig1.png
