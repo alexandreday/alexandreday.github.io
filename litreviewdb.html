@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<title>Literature Review DB</title>
+<meta charset="UTF-8">
+<meta name="description" content="Literature Review DB: a local-first CLI tool that builds a scored, categorized database of research papers. Built with agentic coding tools.">
+<meta property="og:title" content="Literature Review DB — Alexandre Day">
+<meta property="og:description" content="A local-first CLI tool that fetches, scores, and ranks research papers into structured reading plans. Built with Claude Code.">
+<meta property="og:image" content="/images/litreviewdb.svg">
+<meta property="og:type" content="website">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/w3v5.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/academicons.min.css">
+<link rel="stylesheet" href="/css/mystyle.css">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="util.js"></script>
+<style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-white">
+<div id="mySidebar"></div>
+<!-- !PAGE CONTENT! -->
+        <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+        <div class="w3-white">
+            <div>
+                    <div class="blog-container">
+                        <div id="research-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+        <hr>
+
+    <script>
+        loadContent("content/navigation.md", function(parsed) { renderNavigation2(parsed, 1); });
+        loadContent("content/litreviewdb.md", renderResearchContent);
+    </script>
+</body>
+</html>
