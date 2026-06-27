@@ -20,4 +20,8 @@
     <loc>https://alexandreday.github.io/litreviewdb.html</loc>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://alexandreday.github.io/sessionembeddings.html</loc>
+    <priority>0.7</priority>
+  </url>
 </urlset>

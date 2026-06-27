@@ -1,6 +1,11 @@
 ---
 title: About Me
 projects:
+  - title: From Clicks to Intent
+    description: Cross-platform session embeddings paired with an LLM-distilled intent taxonomy, turning pre-login web clickstreams into both quantitative signals and interpretable labels for financial-services recommendations.
+    image: /images/session-embeddings-fig1.png
+    link: sessionembeddings.html
+    date: Jun 2026
   - title: Literature Review DB
     description: A local-first CLI tool that builds a scored, categorized database of research papers with structured reading plans. Built with agentic coding.
     image: /images/icon_litdb.jpg
