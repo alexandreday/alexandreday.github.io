@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<title>From Clicks to Intent</title>
+<meta charset="UTF-8">
+<meta name="description" content="From Clicks to Intent: cross-platform session embeddings with an LLM-distilled taxonomy for financial services recommendations. arXiv 2026.">
+<meta property="og:title" content="From Clicks to Intent — Alexandre Day">
+<meta property="og:description" content="Cross-platform session embeddings with an LLM-distilled taxonomy for financial services recommendations. arXiv preprint, 2026.">
+<meta property="og:image" content="/images/session-embeddings-fig1.png">
+<meta property="og:type" content="website">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/css/w3v5.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/academicons.min.css">
+<link rel="stylesheet" href="/css/mystyle.css">
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="util.js"></script>
+<style>
+    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+</style>
+<body class="w3-white">
+<div id="mySidebar"></div>
+<!-- !PAGE CONTENT! -->
+        <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
+        <div class="w3-white">
+            <div>
+                    <div class="blog-container">
+                        <div id="research-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+
+        <hr>
+
+    <script>
+        loadContent("content/navigation.md", function(parsed) { renderNavigation2(parsed, 1); });
+        loadContent("content/sessionembeddings.md", renderResearchContent);
+    </script>
+</body>
+</html>
