@@ -1,43 +1,95 @@
 <!DOCTYPE html>
-<html>
-<title>From Clicks to Intent</title>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
-<meta name="description" content="From Clicks to Intent: cross-platform session embeddings with an LLM-distilled taxonomy for financial services recommendations. arXiv 2026.">
+<title>From Clicks to Intent — Alexandre Day</title>
+<meta name="description" content="From Clicks to Intent: cross-platform session embeddings with an LLM-distilled taxonomy for financial-services recommendations. arXiv preprint, 2026.">
 <meta property="og:title" content="From Clicks to Intent — Alexandre Day">
-<meta property="og:description" content="Cross-platform session embeddings with an LLM-distilled taxonomy for financial services recommendations. arXiv preprint, 2026.">
+<meta property="og:description" content="Cross-platform session embeddings with an LLM-distilled taxonomy for financial-services recommendations. arXiv preprint, 2026.">
 <meta property="og:image" content="/images/session-embeddings-fig1.png">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/css/w3v5.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/academicons.min.css">
-<link rel="stylesheet" href="/css/mystyle.css">
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="util.js"></script>
-<style>
-    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-</style>
-<body class="w3-white">
-<div id="mySidebar"></div>
-<!-- !PAGE CONTENT! -->
-        <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
-        <div class="w3-white">
-            <div>
-                    <div class="blog-container">
-                        <div id="research-content"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<link rel="stylesheet" href="/css/paper.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="home" href="/index.html"><i class="fa fa-home"></i>&nbsp;Alexandre Day</a>
+    <span class="sep">/</span>
+    <a href="/publication.html">Publications</a>
+  </div>
 </div>
 
-        <hr>
+<header class="hero">
+  <div class="hero-inner">
+    <span class="venue">arXiv 2026 · Preprint</span>
+    <h1>From Clicks to Intent: Cross-Platform Session Embeddings with LLM-Distilled Taxonomy for Financial Services Recommendations</h1>
+    <p class="authors">
+      Dianjing Fan, Yao Li, Kyaw Hpone Myint, Dwipam Katariya,
+      <span class="me">Alexandre G.R. Day</span>, Pranab Mohanty, Giri Iyengar
+    </p>
+    <p class="affil">Capital One</p>
+    <div class="actions">
+      <a class="btn-link" href="https://arxiv.org/abs/2606.26277" target="_blank" rel="noopener">
+        <i class="fa fa-file-text-o"></i> arXiv
+      </a>
+      <a class="btn-link alt" href="https://arxiv.org/pdf/2606.26277" target="_blank" rel="noopener">
+        <i class="fa fa-file-pdf-o"></i> PDF
+      </a>
+    </div>
+  </div>
+</header>
 
-    <script>
-        loadContent("content/navigation.md", function(parsed) { renderNavigation2(parsed, 1); });
-        loadContent("content/sessionembeddings.md", renderResearchContent);
-    </script>
+<article>
+  <div class="article-inner">
+
+    <div class="tldr">
+      <div class="label">TL;DR</div>
+      <p>We turn anonymous pre-login web clickstreams into two complementary outputs &mdash; a self-supervised <strong>session embedding</strong> for quantitative recommendation tasks, and <strong>LLM-distilled intent labels</strong> for interpretable understanding at low latency &mdash; and show both pay off on real financial-services personalization tasks.</p>
+    </div>
+
+    <h2>The problem</h2>
+    <p>In financial services, how people behave before and after they log in is strikingly different. Pre-login web visitors are usually <em>exploring</em> &mdash; comparing products and shopping around &mdash; while logged-in app users are mostly <em>servicing</em> an existing account. That mismatch, combined with the difficulty of matching an anonymous web session to an authenticated mobile account (cross-channel entity resolution), means the rich intent signal in web clickstreams is often left on the table when it comes to in-app personalization.</p>
+    <p>Existing ways of capturing web-based intent tend to be ad-hoc and narrow. They lack the flexibility to serve <strong>both</strong> the quantitative downstream tasks (ranking, conversion prediction) and the qualitative, human-readable understanding that an enterprise setting demands.</p>
+
+    <h2>The approach</h2>
+    <p>We propose a single, scalable framework that transforms raw web clickstreams into two outputs at once. A self-supervised <strong>Transformer</strong> fuses multi-modal clickstream events into a compact session embedding that feeds quantitative models. In parallel, an <strong>LLM-based taxonomy generation and distillation pipeline</strong> produces interpretable intent labels &mdash; useful both for analysis and for stakeholders who need to know <em>why</em> a recommendation was made. Crucially, the distilled labels run at ultra-low latency, so the interpretability comes cheap in production.</p>
+
+    <figure class="fig">
+      <img src="/images/session-embeddings-fig1.png" alt="System architecture: clickstream encoder on the left, LLM taxonomy distillation on the right.">
+      <figcaption><b>Figure 1:</b> System architecture overview. <b>Left:</b> multi-modal clickstream events are fused and encoded into a compact session embedding by a self-supervised Transformer. <b>Right:</b> a clustering-based sampling, iterative LLM taxonomy generation, label assignment, and distillation pipeline turns the same sessions into interpretable intent labels at low latency.</figcaption>
+    </figure>
+
+    <h2>Results</h2>
+    <p>We evaluate the framework on two real production tasks &mdash; mobile homepage tile ranking and user conversion prediction:</p>
+
+    <div class="metrics">
+      <div class="metric"><div class="num">+1.88%</div><div class="cap">macro Recall@1 on tile ranking</div></div>
+      <div class="metric"><div class="num">&minus;13.38%</div><div class="cap">Log Loss on tile ranking</div></div>
+      <div class="metric"><div class="num">+4.3%</div><div class="cap">micro F1 vs. LLM labels on conversion</div></div>
+      <div class="metric"><div class="num">&minus;7%</div><div class="cap">drop for ultra-low-latency distilled labels</div></div>
+    </div>
+
+    <p>On <strong>mobile homepage tile ranking</strong>, the session embedding improves macro Recall@1 by 1.88% and reduces Log Loss by 13.38% over production baselines. On <strong>user conversion prediction</strong>, the embedding outperforms the LLM intent labels by 4.3% on micro F1, while the distillation layer still delivers interpretable labels with only a 7% performance drop.</p>
+
+    <h2>Why it matters</h2>
+    <p>Self-supervised clickstream representations and LLM-distilled taxonomies are not competing approaches &mdash; used together, one system can serve both the quantitative recommendation tasks and the qualitative, human-readable understanding that real enterprise deployments require. That combination is what makes pre-login web intent finally usable for post-authentication personalization.</p>
+
+  </div>
+</article>
+
+<footer class="paper-footer">
+  <div class="footer-inner">
+    Read the full paper on <a href="https://arxiv.org/abs/2606.26277" target="_blank" rel="noopener">arXiv</a>
+    (<a href="https://arxiv.org/pdf/2606.26277" target="_blank" rel="noopener">PDF</a>).
+    &nbsp;&middot;&nbsp; <a href="/index.html">Back to home</a>
+  </div>
+</footer>
+
 </body>
 </html>
