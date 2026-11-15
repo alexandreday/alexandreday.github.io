@@ -1,43 +1,86 @@
 <!DOCTYPE html>
-<html>
-<title>Literature Review DB</title>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
-<meta name="description" content="Literature Review DB: a local-first CLI tool that builds a scored, categorized database of research papers. Built with agentic coding tools.">
+<title>Literature Review DB — Alexandre Day</title>
+<meta name="description" content="Literature Review DB: a local-first CLI tool that builds a scored, categorized database of research papers with structured reading plans. Built with agentic coding tools.">
 <meta property="og:title" content="Literature Review DB — Alexandre Day">
-<meta property="og:description" content="A local-first CLI tool that fetches, scores, and ranks research papers into structured reading plans. Built with Claude Code.">
+<meta property="og:description" content="Literature Review DB: a local-first CLI tool that builds a scored, categorized database of research papers with structured reading plans. Built with agentic coding tools.">
 <meta property="og:image" content="/images/icon_litdb.jpg">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/css/w3v5.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/academicons.min.css">
-<link rel="stylesheet" href="/css/mystyle.css">
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="util.js"></script>
-<style>
-    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-</style>
-<body class="w3-white">
-<div id="mySidebar"></div>
-<!-- !PAGE CONTENT! -->
-        <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
-        <div class="w3-white">
-            <div>
-                    <div class="blog-container">
-                        <div id="research-content"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<link rel="stylesheet" href="/css/paper.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="home" href="/index.html"><i class="fa fa-home"></i>&nbsp;Alexandre Day</a>
+    <span class="sep">/</span>
+    <a href="/index.html#projects">Projects</a>
+    <span class="sep">/</span>
+    <a href="/publication.html">Publications</a>
+  </div>
 </div>
 
-        <hr>
+<header class="hero">
+  <div class="hero-inner">
+    <span class="venue">Side project · Open source · March 2026</span>
+    <h1>Literature Review DB</h1>
+    <p class="authors"><span class="me">Alexandre G.R. Day</span></p>
+    <p class="affil">A local-first CLI for building a scored, categorized database of research papers</p>
+    <div class="actions">
+      <a class="btn-link" href="https://github.com/alexandreday/LiteratureReviewDB" target="_blank" rel="noopener">
+        <i class="fa fa-github"></i> GitHub
+      </a>
+    </div>
+  </div>
+</header>
 
-    <script>
-        loadContent("content/navigation.md", function(parsed) { renderNavigation2(parsed, 1); });
-        loadContent("content/litreviewdb.md", renderResearchContent);
-    </script>
+<article>
+  <div class="article-inner">
+
+    <div class="tldr">
+      <div class="label">TL;DR</div>
+      <p>Point it at a topic and it pulls papers from arXiv, enriches them with citation and author data, ranks everything with a <strong>configurable relevance score</strong>, and hands back a <strong>structured reading plan</strong>: foundational papers first, core work next, frontier research last. The whole thing was built with an AI coding assistant as an experiment in agentic development.</p>
+    </div>
+
+    <h2>The problem</h2>
+    <p>Keeping up with AI research is hard. ArXiv alone sees thousands of new ML papers every month, and none of the existing tools tell you <em>what to read first</em> for your specific topic.</p>
+
+    <h2>What it does</h2>
+    <p>Literature Review DB is a local-first CLI tool that builds a scored, categorized, and searchable database of papers for any research area. Point it at a subject, and it pulls papers from arXiv, enriches them with citation data and author metrics from OpenAlex, fetches community signals from HuggingFace, and ranks everything with a multi-factor relevance score. Then it gives you a structured reading plan.</p>
+    <p>Every paper gets a 0-to-1 relevance score combining citation velocity (30%), author reputation (20%), recency (15%), venue quality (15%), topic relevance (10%), and community upvotes (10%), all configurable. Getting started takes just a few commands:</p>
+<pre><code>python cli.py init "Safe AI"               # generate a config prompt
+python cli.py sync --full                   # fetch, enrich, score
+python cli.py recommend --plan              # get a structured reading plan
+python cli.py top --topic "red teaming"     # top papers for a subtopic</code></pre>
+
+    <figure class="fig">
+      <img src="/images/icon_litdb.jpg" alt="Literature Review DB: papers flow from arXiv and OpenAlex into a scored local database and a reading plan.">
+      <figcaption><b>Figure 1:</b> Literature Review DB fetches papers from arXiv, enriches them with citation and author data from OpenAlex, and ranks everything with a multi-factor relevance score into a local SQLite database with structured reading plans.</figcaption>
+    </figure>
+
+    <h2>Built with agentic coding</h2>
+    <p>This project was also an experiment in using agentic coding tools for rapid development. The entire codebase, from the CLI and database layer to the fetchers, scoring engine and recommendation system, was built collaboratively with <a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank" rel="noopener">Claude Code</a>. It was a way to test how effectively I could leverage an AI coding assistant to go from idea to working tool quickly, for an app I actually care about. The project is open source on <a href="https://github.com/alexandreday/LiteratureReviewDB" target="_blank" rel="noopener">GitHub</a>.</p>
+
+  </div>
+</article>
+
+<div id="project-nav"></div>
+
+<footer class="paper-footer">
+  <div class="footer-inner">
+    Source code and usage on <a href="https://github.com/alexandreday/LiteratureReviewDB" target="_blank" rel="noopener">GitHub</a>.
+    &nbsp;&middot;&nbsp; <a href="/index.html">Back to home</a>
+  </div>
+</footer>
+
+<script src="/frontmatter.js"></script>
+<script src="/projectnav.js"></script>
 </body>
 </html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>QUARTET: Transformers on Relational Graphs — Alexandre Day</title>
+<meta name="description" content="QUARTET: Quad-branch cross-Attention and Random-walk Traces for Enhancing Transformers on Relational Graphs. A graph transformer for relational deep learning. Learning on Graphs (LoG) 2026.">
+<meta property="og:title" content="QUARTET: Transformers on Relational Graphs — Alexandre Day">
+<meta property="og:description" content="A graph transformer for relational deep learning with a causal random-walk sampler and quad-branch global cross-attention. LoG 2026.">
+<meta property="og:image" content="/images/quartet-fig1.png">
+<meta property="og:type" content="article">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/paper.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="home" href="/index.html"><i class="fa fa-home"></i>&nbsp;Alexandre Day</a>
+    <span class="sep">/</span>
+    <a href="/index.html#projects">Projects</a>
+    <span class="sep">/</span>
+    <a href="/publication.html">Publications</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="venue">LoG 2026 · Learning on Graphs, main track</span>
+    <h1>QUARTET: Quad-branch cross-Attention and Random-walk Traces for Enhancing Transformers on Relational Graphs</h1>
+    <p class="authors">
+      Kyaw Hpone Myint, Nan Jiang, Xiang Li, Zhe Wu,
+      <span class="me">Alexandre G.R. Day</span>, Pranab Mohanty, Giri Iyengar
+    </p>
+    <p class="affil">Capital One, AI Foundations</p>
+    <div class="actions">
+      <a class="btn-link" href="https://arxiv.org/abs/2609.26855" target="_blank" rel="noopener">
+        <i class="fa fa-file-text-o"></i> arXiv
+      </a>
+      <a class="btn-link alt" href="https://arxiv.org/pdf/2609.26855" target="_blank" rel="noopener">
+        <i class="fa fa-file-pdf-o"></i> PDF
+      </a>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="article-inner">
+
+    <div class="tldr">
+      <div class="label">TL;DR</div>
+      <p>Quartet is a graph transformer for <strong>relational deep learning</strong>, i.e. learning directly on multi-table databases. It replaces the loose random subgraph sampler of the strongest prior model, RelGT, with a <strong>causal random-walk sampler</strong> built on recency-truncated Personalized PageRank, and adds <strong>four global cross-attention branches</strong> (seed features, seed topology, temporal dynamics, collaborative dynamics). On the RelBench classification suite it matches or beats RelGT on 8 of 12 tasks and holds the best test ROC-AUC on 7.</p>
+    </div>
+
+    <h2>The problem</h2>
+    <p>Relational deep learning treats a relational database as a <strong>heterogeneous temporal graph</strong>: rows become nodes, primary&ndash;foreign key links become edges, and timestamps make the whole thing causal. This is the natural setting for most enterprise data, where the interesting signal lives in how accounts, transactions, events and products relate to one another over time.</p>
+    <p>Graph transformers currently lead the RelBench benchmark, with RelGT as the strongest baseline. It has two weaknesses. Its local sampler draws neighbours at random, which yields <em>loosely connected subgraphs</em> that hinder message passing. And its global module relies on a single seed-feature memory, which misses the broader temporal and collaborative dynamics around a seed entity.</p>
+
+    <h2>The approach</h2>
+    <p><strong>Causal Random Walk (CRW) sampling.</strong> Instead of uniform one- and two-hop sampling, Quartet ranks a seed's neighbourhood with a recency-truncated Personalized PageRank estimate, keeping only the most recent neighbours at each step (50 by default). This produces compact, densely connected local subgraphs, regularises against high-degree hubs, and never looks past the seed's timestamp, so there is no temporal leakage.</p>
+    <p><strong>Local module.</strong> Each sampled node becomes a token that fuses five encodings (feature, node type, hop distance, time and position). Full self-attention runs over the whole local subgraph.</p>
+    <p><strong>Quad-branch global module.</strong> The seed token cross-attends to four complementary views of global context: its <em>features</em> (a feature codebook), its <em>topology</em> (a structural codebook), <em>temporal dynamics</em> (a Perceiver-style bottleneck over recently active nodes) and <em>collaborative dynamics</em> (a Perceiver-style bottleneck over co-occurring peers).</p>
+
+    <figure class="fig">
+      <img src="/images/quartet-fig1.png" alt="Quartet pipeline: relational tables become a heterogeneous temporal graph, three causal samplers extract local, temporal and collaborative context, and a transformer with a local module and quad-branch global module produces the prediction.">
+      <figcaption><b>Figure 1:</b> Overview of the Quartet pipeline. <b>(1)</b> Relational tables are converted into a heterogeneous temporal graph. <b>(2)</b> Three causal samplers extract complementary context: the CRW sampler draws a dense local subgraph, while temporal and collaborative samplers gather globally relevant nodes. <b>(3)</b> A transformer applies full self-attention locally and quad-branch cross-attention globally to produce the seed prediction.</figcaption>
+    </figure>
+
+    <h2>Results</h2>
+    <p>On the twelve RelBench v1 entity-classification tasks, compared against reproduced HGT and RelGT baselines under a shared protocol:</p>
+
+    <div class="metrics">
+      <div class="metric"><div class="num">8 / 12</div><div class="cap">tasks where Quartet matches or beats RelGT</div></div>
+      <div class="metric"><div class="num">+6.4%</div><div class="cap">ROC-AUC on rel-trial study-outcome</div></div>
+      <div class="metric"><div class="num">+5.6%</div><div class="cap">on rel-f1 driver-top3 and rel-event user-repeat</div></div>
+      <div class="metric"><div class="num">&minus;6.7%</div><div class="cap">when the local module and CRW are removed (largest ablation drop)</div></div>
+    </div>
+
+    <p>The ablations are the most informative part. Swapping CRW back to RelGT's uniform sampler costs 1.6% on average, and removing hub truncation or the restart term costs 1.8% and 2.1%. Each of the four global branches contributes on the order of 1.5&ndash;2.0%, with the most important branch varying by task. Structurally, CRW subgraphs have higher average degree and a higher seed-connected ratio than the uniform sampler on all twelve tasks, which is exactly the property the method was designed to fix.</p>
+    <p>Quartet is competitive rather than uniformly dominant: it trails RelGT on a few tasks, notably rel-stack user-badge (&minus;2.7%), and the paper evaluates binary classification only, leaving regression and link prediction to future work.</p>
+
+    <h2>Why it matters</h2>
+    <p>Two simple ideas carry most of the gain: sample <em>denser, recency-aware</em> local neighbourhoods, and give the seed several distinct views of global context rather than one. Both transfer directly to the kind of large, time-stamped relational data we work with in financial services, and they are a step toward graph and tabular foundation models that can be pretrained once on a database and reused across prediction tasks.</p>
+
+  </div>
+</article>
+
+<div id="project-nav"></div>
+
+<footer class="paper-footer">
+  <div class="footer-inner">
+    Read the full paper on <a href="https://arxiv.org/abs/2609.26855" target="_blank" rel="noopener">arXiv</a>
+    (<a href="https://arxiv.org/pdf/2609.26855" target="_blank" rel="noopener">PDF</a>).
+    &nbsp;&middot;&nbsp; <a href="/index.html">Back to home</a>
+  </div>
+</footer>
+
+<script src="/frontmatter.js"></script>
+<script src="/projectnav.js"></script>
+</body>
+</html>

@@ -1,43 +1,93 @@
 <!DOCTYPE html>
-<html>
-<title>Research</title>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
-<meta name="description" content="Research projects by Alexandre Day — quantum control with reinforcement learning, scalable clustering, and machine learning for physics.">
-<meta property="og:title" content="Projects — Alexandre Day">
-<meta property="og:description" content="Research projects in quantum control, machine learning, and computational physics.">
-<meta property="og:type" content="website">
+<title>Reinforcement Learning in Different Phases of Quantum Control — Alexandre Day</title>
+<meta name="description" content="Reinforcement learning in different phases of quantum control: using Q-learning and stochastic descent to map out the smooth, rugged and glassy phases of the quantum state-preparation landscape. Phys. Rev. X, PRL and PRA.">
+<meta property="og:title" content="Reinforcement Learning in Different Phases of Quantum Control — Alexandre Day">
+<meta property="og:description" content="Reinforcement learning in different phases of quantum control: using Q-learning and stochastic descent to map out the smooth, rugged and glassy phases of the quantum state-preparation landscape. Phys. Rev. X, PRL and PRA.">
+<meta property="og:image" content="/images/rugged-landscape2.jpg">
+<meta property="og:type" content="article">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/css/w3v5.css">
-<!--link rel="stylesheet" href="normalize.css"-->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/academicons.min.css">
-<link rel="stylesheet" href="/css/mystyle.css">
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="util.js"></script>
-<style>
-    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-</style>
-<body class="w3-white">
-<div id="mySidebar"></div>
-<!-- !PAGE CONTENT! -->
-        <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
-        <div class="w3-white">
-            <div id="RL">
-                    <div class="blog-container">
-                        <div id="research-content"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<link rel="stylesheet" href="/css/paper.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="home" href="/index.html"><i class="fa fa-home"></i>&nbsp;Alexandre Day</a>
+    <span class="sep">/</span>
+    <a href="/index.html#projects">Projects</a>
+    <span class="sep">/</span>
+    <a href="/publication.html">Publications</a>
+  </div>
 </div>
 
-        <hr>
+<header class="hero">
+  <div class="hero-inner">
+    <span class="venue">Phys. Rev. X · Phys. Rev. Lett. · Phys. Rev. A</span>
+    <h1>Reinforcement learning in different phases of quantum control</h1>
+    <p class="authors">Marin Bukov, <span class="me">Alexandre G.R. Day</span>, Dries Sels, Phillip Weinberg, Anatoli Polkovnikov, Pankaj Mehta</p>
+    <p class="affil">Boston University · 2018&ndash;2019</p>
+    <div class="actions">
+      <a class="btn-link" href="https://journals.aps.org/prx/abstract/10.1103/PhysRevX.8.031086" target="_blank" rel="noopener">
+        <i class="fa fa-file-text-o"></i> Phys. Rev. X
+      </a>
+      <a class="btn-link alt" href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.122.020601" target="_blank" rel="noopener">
+        <i class="fa fa-file-text-o"></i> Phys. Rev. Lett.
+      </a>
+      <a class="btn-link alt" href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.97.052114" target="_blank" rel="noopener">
+        <i class="fa fa-file-text-o"></i> Phys. Rev. A
+      </a>
+    </div>
+  </div>
+</header>
 
-    <script>
-        loadContent("content/navigation.md", function(parsed) { renderNavigation2(parsed, 1); });
-        loadContent("content/research.md", renderResearchContent);
-    </script>
+<article>
+  <div class="article-inner">
+
+    <div class="tldr">
+      <div class="label">TL;DR</div>
+      <p>Guided by <strong>reinforcement learning</strong> (Q-learning) and stochastic descent, we map out the optimization landscape of quantum state preparation and show that it undergoes <strong>phase transitions</strong>: as the constraints on the controls change, the landscape goes from smooth and convex to rugged and glassy, with direct consequences for how hard the control problem is.</p>
+    </div>
+
+    <h2>The problem</h2>
+    <p>Quantum control consists in tuning in real time a set of knobs which set the intensity of some interactions or couplings of a control Hamiltonian. The control Hamiltonian dictates the dynamical state of a quantum state and, as the controls are changed, the quantum state evolves following Schr&ouml;dinger's dynamics. Ultimately, the goal of quantum control is to prepare certain quantum states with desirable properties (an entangled state, for instance). This is of fundamental interest for cold-atom systems, quantum computing and many &ldquo;hot&rdquo; fields of quantum sciences.</p>
+
+    <h2>What we found</h2>
+    <p>In our work we explore the different geometries that the control landscape can take as different constraints are imposed on the system. We show in particular that quantum control undergoes multiple phase transitions from smooth phases to rugged and glassy phases. Our exploration is guided by reinforcement learning methods along with stochastic descent optimization. Below is an artistic impression of a non-convex optimization landscape that may be encountered when optimizing quantum control.</p>
+
+    <figure class="fig">
+      <img src="/images/rugged-landscape2.jpg" alt="Artistic impression of a rugged, non-convex quantum control optimization landscape.">
+      <figcaption><b>Figure 1:</b> The optimization landscape of quantum control. Depending on the constraints imposed in the optimization of the quantum control task, the geometry and &ldquo;ruggedness&rdquo; of the optimization landscape can undergo phase transitions, from smooth and convex landscapes to extremely intricate and rugged landscapes.</figcaption>
+    </figure>
+
+    <h2>Papers</h2>
+    <ul>
+      <li><a href="https://journals.aps.org/prx/abstract/10.1103/PhysRevX.8.031086" target="_blank" rel="noopener">Reinforcement Learning in Different Phases of Quantum Control</a> &mdash; <em>Phys. Rev. X 8, 031086 (2018)</em></li>
+      <li><a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.122.020601" target="_blank" rel="noopener">Glassy Phase of Optimal Quantum Control</a> &mdash; <em>Phys. Rev. Lett. 122, 020601 (2019)</em></li>
+      <li><a href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.97.052114" target="_blank" rel="noopener">Broken symmetry in a two-qubit quantum control landscape</a> &mdash; <em>Phys. Rev. A 97, 052114 (2018)</em></li>
+    </ul>
+
+  </div>
+</article>
+
+<div id="project-nav"></div>
+
+<footer class="paper-footer">
+  <div class="footer-inner">
+    Read the papers in <a href="https://journals.aps.org/prx/abstract/10.1103/PhysRevX.8.031086" target="_blank" rel="noopener">Phys. Rev. X</a>,
+    <a href="https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.122.020601" target="_blank" rel="noopener">Phys. Rev. Lett.</a> and
+    <a href="https://journals.aps.org/pra/abstract/10.1103/PhysRevA.97.052114" target="_blank" rel="noopener">Phys. Rev. A</a>.
+    &nbsp;&middot;&nbsp; <a href="/index.html">Back to home</a>
+  </div>
+</footer>
+
+<script src="/frontmatter.js"></script>
+<script src="/projectnav.js"></script>
 </body>
 </html>

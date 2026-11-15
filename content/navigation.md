@@ -8,7 +8,7 @@ navLinks:
     icon: fa-user
     id: aboutme
   - label: Projects
-    href: ./research.html
+    href: ./quartet.html
     icon: fa-connectdevelop
     id: research
   - label: Publications
@@ -22,6 +22,8 @@ socialLinks:
     icon: fa fa-github
   - href: "https://scholar.google.com/citations?user=OQK_iFEAAAAJ&hl=en"
     icon: ai ai-google-scholar
+  - href: "https://arxiv.org/search/?searchtype=author&query=Day%2C+A+G+R"
+    icon: ai ai-arxiv
   - href: https://www.linkedin.com/in/alexandre-day-01309665
     icon: fa fa-linkedin
 ---

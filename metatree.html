@@ -1,43 +1,92 @@
 <!DOCTYPE html>
-<html>
-<title>MetaTree Research</title>
+<html lang="en">
+<head>
 <meta charset="UTF-8">
-<meta name="description" content="MetaTree: scalable meta-learning of near-optimal decision trees using synthetic data from Structural Causal Models. NeurIPS 2025.">
-<meta property="og:title" content="MetaTree — Alexandre Day">
-<meta property="og:description" content="Scalable meta-learning of near-optimal decision trees using Structural Causal Models. Published at NeurIPS 2025.">
+<title>Scalable Meta-Learning of Decision Trees — Alexandre Day</title>
+<meta name="description" content="Towards Scalable Meta-Learning of near-optimal Interpretable Models via Synthetic Model Generations: a Structural Causal Model data pipeline for meta-learning near-optimal decision trees. NeurIPS 2025 Workshop on Generative AI in Finance.">
+<meta property="og:title" content="Scalable Meta-Learning of Decision Trees — Alexandre Day">
+<meta property="og:description" content="Towards Scalable Meta-Learning of near-optimal Interpretable Models via Synthetic Model Generations: a Structural Causal Model data pipeline for meta-learning near-optimal decision trees. NeurIPS 2025 Workshop on Generative AI in Finance.">
 <meta property="og:image" content="/images/metatree-fig1.png">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="/css/w3v5.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/css/academicons.min.css">
-<link rel="stylesheet" href="/css/mystyle.css">
-<script src="//code.jquery.com/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="util.js"></script>
-<style>
-    body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-</style>
-<body class="w3-white">
-<div id="mySidebar"></div>
-<!-- !PAGE CONTENT! -->
-        <button class="w3-button w3-xlarge w3-hide-large" onclick="w3_open()">&#9776;</button>
-        <div class="w3-white">
-            <div>
-                    <div class="blog-container">
-                        <div id="research-content"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<link rel="stylesheet" href="/css/paper.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="home" href="/index.html"><i class="fa fa-home"></i>&nbsp;Alexandre Day</a>
+    <span class="sep">/</span>
+    <a href="/index.html#projects">Projects</a>
+    <span class="sep">/</span>
+    <a href="/publication.html">Publications</a>
+  </div>
 </div>
 
-        <hr>
+<header class="hero">
+  <div class="hero-inner">
+    <span class="venue">NeurIPS 2025 · Workshop on Generative AI in Finance</span>
+    <h1>Towards Scalable Meta-Learning of near-optimal Interpretable Models via Synthetic Model Generations</h1>
+    <p class="authors">Kyaw Hpone Myint, Zhe Wu, <span class="me">Alexandre G.R. Day</span>, Giri Iyengar</p>
+    <p class="affil">Capital One</p>
+    <div class="actions">
+      <a class="btn-link" href="https://arxiv.org/abs/2511.04000" target="_blank" rel="noopener">
+        <i class="fa fa-file-text-o"></i> arXiv
+      </a>
+      <a class="btn-link alt" href="https://arxiv.org/pdf/2511.04000" target="_blank" rel="noopener">
+        <i class="fa fa-file-pdf-o"></i> PDF
+      </a>
+    </div>
+  </div>
+</header>
 
-    <script>
-        loadContent("content/navigation.md", function(parsed) { renderNavigation2(parsed, 1); });
-        loadContent("content/metatree.md", renderResearchContent);
-    </script>
+<article>
+  <div class="article-inner">
+
+    <div class="tldr">
+      <div class="label">TL;DR</div>
+      <p>A synthetic-data pipeline built on <strong>Structural Causal Models</strong> lets a transformer meta-learner (MetaTree) learn to predict <strong>near-optimal decision trees</strong> without pre-training on real-world datasets or running expensive optimal-tree solvers, and matches their performance at a fraction of the compute.</p>
+    </div>
+
+    <h2>The problem</h2>
+    <p>Decision trees are widely used in high-stakes fields like finance and healthcare because they offer interpretability, but training <em>optimal</em> decision trees is NP-hard and computationally expensive. Existing meta-learning approaches like MetaTree use transformer architectures to predict near-optimal trees, but they rely on real-world datasets or expensive optimal tree solvers for pre-training, which limits scalability.</p>
+
+    <h2>The approach</h2>
+    <p>We propose a scalable synthetic data generation pipeline based on Structural Causal Models (SCMs) that enables meta-learning of near-optimal decision trees without these bottlenecks. The pipeline has four steps:</p>
+    <ul>
+      <li><strong>Sample</strong> synthetic features and labels from an SCM, so that the data carries genuine causal relationships.</li>
+      <li><strong>Generate</strong> CART baseline trees for each synthetic dataset.</li>
+      <li><strong>Filter</strong> for quality, removing datasets with severe class imbalance or poor separability.</li>
+      <li><strong>Align</strong> the final datasets with the CART decision boundaries, with controlled label noise.</li>
+    </ul>
+
+    <figure class="fig">
+      <img src="/images/metatree-fig1.png" alt="Meta-learning workflow: synthetic datasets and their optimal trees train MetaTree, which then predicts look-ahead trees on unseen real-world datasets.">
+      <figcaption><b>Figure 1:</b> Meta-learning workflow for generating look-ahead trees using synthetic data. The workflow can be divided into two parts: <b>(1)</b> a meta-learning step where labeled synthetic datasets are fed into MetaTree along with the optimal decision trees for each dataset as the training targets, and <b>(2)</b> an inference step where the pre-trained model is used to predict the look-ahead trees on unseen, real-world datasets.</figcaption>
+    </figure>
+
+    <h2>Results and why it matters</h2>
+    <p>MetaTree pre-trained on our synthetic data achieves performance comparable to pre-training on real-world datasets or with computationally expensive optimal decision tree solvers, while substantially reducing computational cost and offering greater flexibility in data generation.</p>
+    <p>Because the synthetic generator is cheap and fully controllable, it removes the main bottleneck to scaling meta-learned interpretable models: the supply of training problems. That matters in regulated settings, where a small, auditable tree is often the only model that can ship.</p>
+
+  </div>
+</article>
+
+<div id="project-nav"></div>
+
+<footer class="paper-footer">
+  <div class="footer-inner">
+    Read the full paper on <a href="https://arxiv.org/abs/2511.04000" target="_blank" rel="noopener">arXiv</a>
+    (<a href="https://arxiv.org/pdf/2511.04000" target="_blank" rel="noopener">PDF</a>).
+    &nbsp;&middot;&nbsp; <a href="/index.html">Back to home</a>
+  </div>
+</footer>
+
+<script src="/frontmatter.js"></script>
+<script src="/projectnav.js"></script>
 </body>
 </html>

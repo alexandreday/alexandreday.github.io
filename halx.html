@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HAL-x: Scalable Hierarchical Clustering — Alexandre Day</title>
+<meta name="description" content="HAL-x: scalable hierarchical clustering for rapid and tunable single-cell analysis. A hierarchical density-clustering algorithm with supervised linkage that scales to tens of millions of cells. PLOS Computational Biology, 2022.">
+<meta property="og:title" content="HAL-x: Scalable Hierarchical Clustering — Alexandre Day">
+<meta property="og:description" content="HAL-x: scalable hierarchical clustering for rapid and tunable single-cell analysis. A hierarchical density-clustering algorithm with supervised linkage that scales to tens of millions of cells. PLOS Computational Biology, 2022.">
+<meta property="og:image" content="/images/highd2.jpg">
+<meta property="og:type" content="article">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/paper.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="home" href="/index.html"><i class="fa fa-home"></i>&nbsp;Alexandre Day</a>
+    <span class="sep">/</span>
+    <a href="/index.html#projects">Projects</a>
+    <span class="sep">/</span>
+    <a href="/publication.html">Publications</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="venue">PLOS Computational Biology · 2022</span>
+    <h1>HAL-x: Scalable hierarchical clustering for rapid and tunable single-cell analysis</h1>
+    <p class="authors">James Anibal, <span class="me">Alexandre G.R. Day</span>, Erol Bahadiroglu, Liam O&rsquo;Neil, Long Phan, Alec Peltekian, Amir Erez, Mariana Kaplan, Gr&eacute;goire Altan-Bonnet, Pankaj Mehta</p>
+    <p class="affil">Boston University · National Institutes of Health</p>
+    <div class="actions">
+      <a class="btn-link" href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010349" target="_blank" rel="noopener">
+        <i class="fa fa-file-text-o"></i> Paper
+      </a>
+      <a class="btn-link alt" href="https://github.com/alexandreday/HAL" target="_blank" rel="noopener">
+        <i class="fa fa-github"></i> Code
+      </a>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="article-inner">
+
+    <div class="tldr">
+      <div class="label">TL;DR</div>
+      <p>HAL-x is a <strong>hierarchical density-clustering</strong> algorithm that uses <strong>supervised linkage</strong> to build a tunable cluster hierarchy from raw single-cell data. It scales to tens of millions of cells on an ordinary laptop, outperforms Parc, Phenograph and HDBSCAN on standard cytometry benchmarks, and its clusters classify clinical status from single-cell profiles with near-perfect F1 scores.</p>
+    </div>
+
+    <h2>The problem</h2>
+    <p>Technologies like flow and mass cytometry measure dozens of markers across tens of millions of cells per study. Grouping those cells into biologically meaningful populations is the first step of almost every analysis, and at this scale it is computationally hard: several popular clustering methods run out of memory somewhere around a million points, and the ones that survive give little control over <em>how fine</em> the resulting populations should be.</p>
+
+    <h2>The approach</h2>
+    <p>HAL-x separates the problem into a fast, unsupervised step and a supervised, self-consistent one. First, a subsample of the data is embedded and a density map is built; local density maxima become candidate clusters and every point is assigned to its nearest mode. Then, instead of merging neighbouring clusters with a geometric distance, HAL-x trains a classifier to tell them apart and merges the pair that is <strong>hardest to distinguish out of sample</strong>. Repeating this yields a full hierarchy of clusters, and a single cross-validation score lets the user pick the resolution at which clusters are still statistically meaningful. Because the merging is driven by a classifier, the same model labels the complete dataset, including the cells that were never embedded.</p>
+
+    <figure class="fig">
+      <img src="/images/highd.png" alt="Density map of embedded single-cell data, the graph of density modes connecting neighbouring maxima, and the raw assignment of points to local modes.">
+      <figcaption><b>Figure 1:</b> The density-clustering stage of HAL-x. A kernel density map of the embedded data locates local density modes; neighbouring modes are linked into a density-mode graph, and each point is assigned to its nearest mode. These raw clusters are then merged hierarchically using supervised linkage, so that only clusters a classifier can reliably separate survive at a given resolution.</figcaption>
+    </figure>
+
+    <h2>Results</h2>
+    <div class="metrics">
+      <div class="metric"><div class="num">10<sup>7</sup></div><div class="cap">points clustered on an 8-core laptop in synthetic scaling tests</div></div>
+      <div class="metric"><div class="num">25.9M</div><div class="cap">cells from 150 lupus and healthy samples, five clusterings in under an hour</div></div>
+      <div class="metric"><div class="num">0.82</div><div class="cap">AUC separating lupus from healthy with a single neutrophil subpopulation</div></div>
+    </div>
+    <p>On the Levine flow-cytometry (81,747 cells, 13 markers) and mass-cytometry (104,184 cells, 32 markers) benchmarks, HAL-x achieves higher F1 scores than Parc, Phenograph and HDBSCAN. On synthetic data from 10<sup>3</sup> to 10<sup>7</sup> points, several competing methods exceed available memory at 10<sup>6</sup> points while HAL-x keeps running. Applied to a 38-marker lupus cohort, it surfaces a mature neutrophil subpopulation that separates patients from healthy controls.</p>
+
+    <h2>Why it matters</h2>
+    <p>The supervised-linkage idea gives clustering something it usually lacks: a self-consistent notion of which clusters are real at a given resolution, learned from the data rather than set by a distance threshold. That is what makes the hierarchy tunable, and it is why the same approach transfers to other large, high-dimensional datasets beyond single-cell biology.</p>
+
+  </div>
+</article>
+
+<div id="project-nav"></div>
+
+<footer class="paper-footer">
+  <div class="footer-inner">
+    Read the paper in <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010349" target="_blank" rel="noopener">PLOS Computational Biology</a>
+    or browse the <a href="https://github.com/alexandreday/HAL" target="_blank" rel="noopener">code on GitHub</a>.
+    &nbsp;&middot;&nbsp; <a href="/index.html">Back to home</a>
+  </div>
+</footer>
+
+<script src="/frontmatter.js"></script>
+<script src="/projectnav.js"></script>
+</body>
+</html>

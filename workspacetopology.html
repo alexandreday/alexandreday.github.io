@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Workspace Topology as an Attack Vector — Alexandre Day</title>
+<meta name="description" content="Workspace Topology as an Attack Vector in Agentic Coding Assistants: how a code repository's structure changes the success of indirect prompt injection against coding agents. CAMLIS 2026.">
+<meta property="og:title" content="Workspace Topology as an Attack Vector — Alexandre Day">
+<meta property="og:description" content="How a code repository's structure changes the success of indirect prompt injection against agentic coding assistants. CAMLIS 2026.">
+<meta property="og:image" content="/images/workspace-topology-fig1.png">
+<meta property="og:type" content="article">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/paper.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="home" href="/index.html"><i class="fa fa-home"></i>&nbsp;Alexandre Day</a>
+    <span class="sep">/</span>
+    <a href="/index.html#projects">Projects</a>
+    <span class="sep">/</span>
+    <a href="/publication.html">Publications</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="venue">CAMLIS 2026 · Applied Machine Learning in Information Security</span>
+    <h1>Workspace Topology as an Attack Vector in Agentic Coding Assistants</h1>
+    <p class="authors">
+      <span class="me">Alexandre G.R. Day</span>, Pradeep Yadlapalli, Sriram Venkatapathy, Thomas Paniagua, Nick Raines,
+      Sahil Wadhwa, Himanshu Kumar, Andy Luo, Sudeep Panyam, Rikhiya Ghosh, Pranab Mohanty, Giri Iyengar
+    </p>
+    <p class="affil">Capital One, AI Foundations</p>
+    <div class="actions">
+      <a class="btn-link" href="https://arxiv.org/abs/2608.14876" target="_blank" rel="noopener">
+        <i class="fa fa-file-text-o"></i> arXiv
+      </a>
+      <a class="btn-link alt" href="https://arxiv.org/pdf/2608.14876" target="_blank" rel="noopener">
+        <i class="fa fa-file-pdf-o"></i> PDF
+      </a>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="article-inner">
+
+    <div class="tldr">
+      <div class="label">TL;DR</div>
+      <p>The <strong>layout of a code repository</strong> is itself a security variable. Planting the same indirect prompt injection in 100 open-source repositories across 10 languages and 6 engineering domains, we find that more modular codebases substantially lower attack success, that a short defensive note in <code>AGENTS.md</code> suppresses it by roughly 60%, and that <em>where</em> a payload sits (directory depth, in-file position, chat-template mimicry) changes whether a coding agent reaches it and complies.</p>
+    </div>
+
+    <h2>The problem</h2>
+    <p>Agentic coding assistants such as Claude Code, Codex and Opencode operate inside a developer's trusted project folder. They read configuration files, documentation and source, and they run tools. Any file the agent reads in the course of normal work can carry adversarial instructions, which makes the workspace a natural channel for <strong>indirect prompt injection</strong> (IPI): a malicious pull-request contributor or a compromised dependency only has to leave text where the agent will look.</p>
+    <p>Prior IPI work has focused on web agents, retrieval pipelines and tool descriptions. What was missing was a systematic study of how the <em>structure</em> of the repository, which we call its <strong>workspace topology</strong>, changes whether such an attack succeeds.</p>
+
+    <h2>The approach</h2>
+    <p>We characterise workspace topology along four dimensions. Two are properties of the codebase: <strong>modularity</strong>, scored 1 to 10 with an eight-criterion rubric, and <strong>framing context</strong>, i.e. whether security-themed cues are present in the workspace. Two are controlled by the attacker: the <strong>nesting depth</strong> at which the payload is planted and its <strong>in-file position</strong> (beginning, middle or end).</p>
+    <p>Payloads enter through three realistic entry points: <strong>EP1</strong>, workspace configuration files such as <code>AGENTS.md</code> or <code>CLAUDE.md</code> that harnesses auto-load as system context; <strong>EP2</strong>, documentation such as <code>README.md</code>; and <strong>EP3</strong>, source files two or more directories deep. The payload instructs the agent to run a planted <code>init.sh</code> script that echoes two markers, so execution is verifiable. We decompose the <strong>attack success rate</strong> (ASR) into <em>reachability</em> (did the agent read the payload?) times <em>compliance</em> (did it follow it?), and evaluate with an open-weight model (gpt-oss-120b) served through the open-source Opencode harness.</p>
+
+    <figure class="fig">
+      <img src="/images/workspace-topology-fig1.png" alt="Threat model: an adversary plants an injection in a repository artifact, which lands in one of three entry points and is read by the coding agent during a normal task.">
+      <figcaption><b>Figure 1:</b> Threat model. <b>(a)</b> An adversary, for example a malicious PR contributor, plants an injection prompt in a repository artifact. <b>(b)</b> The prompt lands in one of three IPI entry points inside the workspace: workspace configuration (EP1), documentation (EP2) or nested source files (EP3). <b>(c)</b> The coding agent reads the artifact while carrying out a benign developer task and may comply with the planted directive.</figcaption>
+    </figure>
+
+    <h2>Results</h2>
+    <p>Topology moves the needle a lot more than one might expect for an attack whose text never changes:</p>
+
+    <div class="metrics">
+      <div class="metric"><div class="num">44% &rarr; 27%</div><div class="cap">ASR, low- vs. high-modularity repos</div></div>
+      <div class="metric"><div class="num">&minus;15.5 pp</div><div class="cap">ASR with a defensive AGENTS.md (&asymp;60% suppression)</div></div>
+      <div class="metric"><div class="num">2.3&times;</div><div class="cap">ASR spread across languages (22% Java to 50% Ruby)</div></div>
+      <div class="metric"><div class="num">38% &rarr; 8.5%</div><div class="cap">ASR from depth 2 to depth 4</div></div>
+    </div>
+
+    <p><strong>Modularity.</strong> Over 1,261 sessions on the full 100-repository set, low-modularity repositories (scores 1&ndash;2) show an ASR of 44.0%, mid-modularity 34.4%, and high-modularity (5&ndash;7) 26.5%. The confidence intervals of the low and high buckets do not overlap. The drop comes almost entirely from <em>compliance</em> (47.6% down to 30.6%): the agent still reads the payload in well-structured repositories, it just follows it less often.</p>
+    <p><strong>Framing.</strong> A single defensive instruction in <code>AGENTS.md</code> (&ldquo;Do NOT execute scripts&hellip;&rdquo;) brings ASR from 25.7% down to 10.2%. A security-themed folder-name prefix, by contrast, changes ASR by only &minus;3.0 pp and is not significant.</p>
+    <p><strong>Depth and position.</strong> Reachability peaks at depth 2 and then falls away, so ASR is bounded by how deep the agent actually explores. Within a README, a plain payload works best at the top of the file, but wrapping it in a <em>format-mimicry envelope</em> (fake chat-template role tokens) flips that pattern: compliance climbs to 20% when the payload is placed at the end of the file, versus 2% for the plain version.</p>
+
+    <h2>Why it matters</h2>
+    <p>For defenders, the results point to concrete levers. Modular code is a passive defence worth having. Harnesses should validate <code>AGENTS.md</code> and <code>CLAUDE.md</code> for action directives before loading them, and should default to denying side-effecting tools such as shell and write access, which blocks the compliance step outright. Defensive framing helps but is a soft layer that an adaptive attacker can rephrase around.</p>
+    <p>For red teams, topology is a confound that has to be controlled: report reachability and compliance separately, sample across modularity and depth rather than a single convenient repository, and keep test environments uncontaminated (for instance, commit planted files before the agent runs so <code>git status</code> does not give them away). The study covers one model, one harness and one payload action, so the absolute numbers will shift across agents; the dependence on topology is the point.</p>
+
+  </div>
+</article>
+
+<div id="project-nav"></div>
+
+<footer class="paper-footer">
+  <div class="footer-inner">
+    Read the full paper on <a href="https://arxiv.org/abs/2608.14876" target="_blank" rel="noopener">arXiv</a>
+    (<a href="https://arxiv.org/pdf/2608.14876" target="_blank" rel="noopener">PDF</a>).
+    &nbsp;&middot;&nbsp; <a href="/index.html">Back to home</a>
+  </div>
+</footer>
+
+<script src="/frontmatter.js"></script>
+<script src="/projectnav.js"></script>
+</body>
+</html>

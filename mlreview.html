@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Machine Learning for Physicists — Alexandre Day</title>
+<meta name="description" content="A high-bias, low-variance introduction to Machine Learning for physicists: a 120-page review of the core ideas of machine learning in the language of physics, with 20 Jupyter notebooks. Physics Reports, 2019.">
+<meta property="og:title" content="Machine Learning for Physicists — Alexandre Day">
+<meta property="og:description" content="A high-bias, low-variance introduction to Machine Learning for physicists: a 120-page review of the core ideas of machine learning in the language of physics, with 20 Jupyter notebooks. Physics Reports, 2019.">
+<meta property="og:image" content="/images/ml-review2.jpg">
+<meta property="og:type" content="article">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/css/paper.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="home" href="/index.html"><i class="fa fa-home"></i>&nbsp;Alexandre Day</a>
+    <span class="sep">/</span>
+    <a href="/index.html#projects">Projects</a>
+    <span class="sep">/</span>
+    <a href="/publication.html">Publications</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="venue">Physics Reports 810, 1&ndash;124 (2019)</span>
+    <h1>A high-bias, low-variance introduction to Machine Learning for physicists</h1>
+    <p class="authors">Pankaj Mehta, Marin Bukov, Ching-Hao Wang, <span class="me">Alexandre G.R. Day</span>, Clint Richardson, Charles K. Fisher, David J. Schwab</p>
+    <p class="affil">122 pages · 78 figures · 20 Python notebooks</p>
+    <div class="actions">
+      <a class="btn-link" href="https://www.sciencedirect.com/science/article/pii/S0370157319300766" target="_blank" rel="noopener">
+        <i class="fa fa-file-text-o"></i> Journal
+      </a>
+      <a class="btn-link alt" href="https://arxiv.org/abs/1803.08823" target="_blank" rel="noopener">
+        <i class="fa fa-file-text-o"></i> arXiv
+      </a>
+      <a class="btn-link alt" href="http://physics.bu.edu/~pankajm/MLnotebooks.html" target="_blank" rel="noopener">
+        <i class="fa fa-book"></i> Notebooks
+      </a>
+      <a class="btn-link alt" href="https://github.com/drckf/mlreview_notebooks" target="_blank" rel="noopener">
+        <i class="fa fa-github"></i> GitHub
+      </a>
+    </div>
+  </div>
+</header>
+
+<article>
+  <div class="article-inner">
+
+    <div class="tldr">
+      <div class="label">TL;DR</div>
+      <p>An introduction to the core ideas of machine learning written <strong>in the language of physicists</strong>, from the bias&ndash;variance tradeoff to deep learning and energy-based models, with a strong emphasis on the connections to statistical physics. Every chapter comes with a <strong>Jupyter notebook</strong> on a physics dataset, so the ideas can be run, not just read.</p>
+    </div>
+
+    <h2>What it covers</h2>
+    <p>The review starts with the fundamentals that every other topic rests on: the bias&ndash;variance tradeoff, overfitting, regularization, generalization and gradient descent. It then works through supervised methods (linear and logistic regression, ensemble models, deep neural networks and convolutional networks) and unsupervised ones (clustering, data visualization, energy-based models such as MaxEnt and Restricted Boltzmann Machines, and variational methods including variational autoencoders).</p>
+    <p>Throughout, the emphasis is on the connections to statistical physics: free energies, phase transitions, mean-field theory and Monte Carlo sampling appear as natural tools for understanding why learning algorithms behave as they do. The review closes with an outlook on applying machine learning to physics and on open problems where physicists are well placed to contribute.</p>
+
+    <figure class="fig">
+      <img src="/images/ml-review.png" alt="A short-tailed distribution p and a long-tailed distribution q, with points of equal probability density matched between them.">
+      <figcaption><b>Figure 1:</b> One of the review's illustrations: a short-tailed distribution <i>p</i> and a long-tailed distribution <i>q</i>. Matching points of equal density between the two shows how a heavy tail moves probability mass far from the centre, an effect that shows up repeatedly when reasoning about overfitting and generalization.</figcaption>
+    </figure>
+
+    <h2>The notebooks</h2>
+    <p>Twenty Python notebooks accompany the text and use physics-inspired datasets, including the Ising model and simulated proton&ndash;proton collision data, to implement the methods from scratch or with standard libraries. They are the fastest way to get a feel for the material and are maintained on <a href="https://github.com/drckf/mlreview_notebooks" target="_blank" rel="noopener">GitHub</a>, with an index on <a href="http://physics.bu.edu/~pankajm/MLnotebooks.html" target="_blank" rel="noopener">Pankaj Mehta's page</a>.</p>
+
+    <h2>Why it matters</h2>
+    <p>Physicists arrive at machine learning with a lot of relevant intuition and an unfamiliar vocabulary. The review is meant as a self-contained on-ramp that uses the first to build the second, and it remains the way I would recommend a physicist start.</p>
+
+  </div>
+</article>
+
+<div id="project-nav"></div>
+
+<footer class="paper-footer">
+  <div class="footer-inner">
+    Read the review in <a href="https://www.sciencedirect.com/science/article/pii/S0370157319300766" target="_blank" rel="noopener">Physics Reports</a>
+    (<a href="https://arxiv.org/abs/1803.08823" target="_blank" rel="noopener">arXiv</a>), and run the <a href="https://github.com/drckf/mlreview_notebooks" target="_blank" rel="noopener">notebooks</a>.
+    &nbsp;&middot;&nbsp; <a href="/index.html">Back to home</a>
+  </div>
+</footer>
+
+<script src="/frontmatter.js"></script>
+<script src="/projectnav.js"></script>
+</body>
+</html>
