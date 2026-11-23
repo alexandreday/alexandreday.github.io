@@ -16,8 +16,6 @@ navLinks:
     icon: fa-leanpub
     id: publication
 socialLinks:
-  - href: "mailto:***REMOVED***"
-    icon: fa fa-envelope
   - href: https://github.com/alexandreday
     icon: fa fa-github
   - href: "https://scholar.google.com/citations?user=OQK_iFEAAAAJ&hl=en"
